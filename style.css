@@ -1,0 +1,120 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    background-color: rgb(0, 0, 0);
+    color: rgb(0, 163, 0);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+}
+
+h1, h2, h3 {
+    text-align: center;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.visToggle {
+    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 2s; /* Firefox < 16 */
+    -ms-animation: fadein 2s; /* Internet Explorer */
+    -o-animation: fadein 2s; /* Opera < 12.1 */
+    animation: fadein 2s;  
+}
+
+#contButton, #playAgain, #submit {
+    width: 300px;
+    height: 50px;
+    border: none;
+    background-color: rgb(0, 0, 0);
+    color: rgb(0, 163, 0);
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+    font-size: 30px;
+    position: relative;
+    margin-left: 42%;
+}
+
+#messageDiv {
+    transition: 0.5s;
+}
+
+.hidden {
+    opacity: 0;
+    transition: 0.5s;
+}
+
+#contButton:focus, #playAgain:focus, .codeField:focus {
+    outline: 0;
+}
+
+#contButton:hover, #playAgain:hover, #submit:hover {
+    border-radius: 10px;
+    background-color: rgb(0, 163, 0);
+    color: black;
+}
+
+.blinking{
+    animation:blinkingText 1.2s infinite;
+}
+@keyframes blinkingText{
+    0%{     background-color: rgb(0, 163, 0);    }
+    49%{    background-color: rgb(0, 163, 0); }
+    50%{    background-color: transparent; }
+    99%{    background-color:transparent;  }
+    100%{   background-color: rgb(0, 163, 0);    }
+}
+
+#blinkDiv {
+    height: 30px;
+    width: 15px;
+    display: inline-block;
+}
+
+.lossLife {
+    background-color: red;
+    transition: 0.5s;
+}
+
+.codeField {
+    background-color: rgb(0, 56, 0);
+    color: rgb(0, 163, 0);
+    border: none;
+    border-radius: 5px;
+    height: 40px;
+    width:100px;
+    text-align: center;
+    font-size: xx-large;
+    padding-left: 15px;
+}
+
+#info {
+    padding-top: 20px;
+    padding-left: 20px;
+}
