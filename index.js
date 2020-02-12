@@ -23,10 +23,11 @@ function introduction(){
     }, 5000)
     setTimeout(() =>{
         let cont = continueButton()
-
+        let centered = d.createElement('center')
         cont.setAttribute('id', 'contButton')
         cont.setAttribute('class', 'visToggle')
-        container.appendChild(cont)
+        container.appendChild(centered)
+        centered.appendChild(cont)
         cont.focus()
         d.addEventListener('click', () => focusButton(cont))
         level = 1
@@ -158,7 +159,9 @@ function lossScreen() {
         messageDiv.textContent = ""
         introduction()
     })
-    container.appendChild(retry)
+    let centered = d.createElement('center')
+    container.appendChild(centered)
+    centered.appendChild(retry)
     retry.focus()
 }
 
@@ -175,7 +178,9 @@ function winScreen(){
         messageDiv.textContent = ""
         introduction()
     })
-    container.appendChild(retry)
+    let centered = d.createElement('center')
+    container.appendChild(centered)
+    centered.appendChild(retry)
     retry.focus()
 }
 
