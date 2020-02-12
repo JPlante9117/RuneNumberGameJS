@@ -3,16 +3,25 @@ let lives
 let level
 
 function introduction(){
+    level = 1
+    lives = 3
     const b = d.getElementsByTagName('body')[0]
-    let container = d.createElement('div')
+    let container = d.getElementById('container')
     let secondh1 = d.createElement('div')
     let thirdh1 = d.createElement('div')
+    let audioPlayer = d.createElement('audio')
+    audioPlayer.setAttribute('autoplay', 'autoplay')
+    audioPlayer.volume = 0.5
+    let music = d.createElement('source')
+    music.setAttribute('src', 'sounds/Press Start Theme.wav')
+    audioPlayer.appendChild(music)
     container.setAttribute('id', 'container')
     container.setAttribute('class', 'visToggle')
     container.innerHTML = `<h1>In an abandoned castle are unfathomable treasures...</h1>`
     secondh1.innerHTML = `<h1>Unfortunately, there are five strange magical runes that seal the door to it.</h1>`
     thirdh1.innerHTML = `<h1>You've been hired as an expert on decrypting runes. You've created a method to decrypt runes based on two numerical qualities they are related to.</h1>`
     b.appendChild(container)
+    container.appendChild(audioPlayer)
     setTimeout(() =>{
         container.appendChild(secondh1)
         secondh1.setAttribute('class','visToggle')
@@ -30,8 +39,6 @@ function introduction(){
         centered.appendChild(cont)
         cont.focus()
         d.addEventListener('click', () => focusButton(cont))
-        level = 1
-        lives = 3
     }, 7000)
 }
 
@@ -92,6 +99,7 @@ function displayChallenge(code = {}){
     container.innerHTML += answers
     let form = d.getElementById('userGuess')
     form.addEventListener("submit", e => {
+        e.preventDefault()
         checkGuess(e, code)
     })
     
@@ -113,6 +121,7 @@ function checkGuess(event, code){
 }
 
 function displaySuccess(){
+    rightAnswerAnim()
     let messageDiv = d.getElementById('messageDiv')
     if (level !== 5){
         messageDiv.innerHTML = `<h3>That seemed to work! The rune has faded. On to the next rune!</h3>`
@@ -129,7 +138,19 @@ function displaySuccess(){
     }
 }
 
+function rightAnswerAnim(){
+    let audioPlayer = d.createElement('audio')
+    audioPlayer.setAttribute('autoplay', 'autoplay')
+    audioPlayer.volume = 0.2
+    let music = d.createElement('source')
+    music.setAttribute('src', 'sounds/sfx_movement_portal1.wav')
+    audioPlayer.appendChild(music)
+    let body = d.getElementsByTagName('body')[0]
+    body.appendChild(audioPlayer)
+}
+
 function displayFailure(){
+    wrongAnswerAnim()
     let messageDiv = d.getElementById('messageDiv')
     let info = d.getElementById('info')
     info.setAttribute('class', 'lossLife')
@@ -143,6 +164,21 @@ function displayFailure(){
         let code = generateCode(level)
         displayChallenge(code)
     }
+}
+
+function wrongAnswerAnim(){
+    let audioPlayer = d.createElement('audio')
+    audioPlayer.setAttribute('autoplay', 'autoplay')
+    audioPlayer.volume = 0.2
+    let music = d.createElement('source')
+    music.setAttribute('src', 'sounds/sfx_sounds_negative1.wav')
+    audioPlayer.appendChild(music)
+    let body = d.getElementsByTagName('body')[0]
+    body.appendChild(audioPlayer)
+    body.classList.add("applyShake")
+    body.addEventListener("animationend", e => {
+        body.classList.remove("applyShake")
+    })
 }
 
 function lossScreen() {
@@ -193,5 +229,9 @@ function displayLives(){
 }
 
 d.addEventListener("DOMContentLoaded", () =>{
+    let music = `<audio autoplay="autoplay">
+    <source src="Press Start Theme.wav"/>
+    </audio>`
+    
     introduction()
 })
