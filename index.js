@@ -23,15 +23,12 @@ function introduction(){
     }, 5000)
     setTimeout(() =>{
         let cont = continueButton()
-        let blinkingDiv = d.createElement('div')
-        blinkingDiv.setAttribute('id', 'blinkDiv')
-        blinkingDiv.setAttribute('class', 'blinking')
+
         cont.setAttribute('id', 'contButton')
         cont.setAttribute('class', 'visToggle')
         container.appendChild(cont)
         cont.focus()
         d.addEventListener('click', () => focusButton(cont))
-        setTimeout(() => container.appendChild(blinkingDiv), 2000)
         level = 1
         lives = 3
     }, 7000)
@@ -83,13 +80,13 @@ function displayChallenge(code = {}){
     <h1>What are the three numbers?</h1>`
 
     let answers = `
-    <form id='userGuess'>
-        <center><input type='number' name='code1' class="codeField">
+    <center><form id='userGuess'>
+        <input type='number' name='code1' class="codeField">
         <input type='number' name='code2' class="codeField">
-        <input type='number' name='code3' class="codeField"></center>
+        <input type='number' name='code3' class="codeField">
         <br><br>
         <input type='submit' value='Test Runes' id="submit">
-    </form>`
+    </form></center>`
 
     container.innerHTML += answers
     let form = d.getElementById('userGuess')
